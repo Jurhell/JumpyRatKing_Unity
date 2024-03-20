@@ -6,16 +6,20 @@ using UnityEngine;
 public class BetterPlayerController : MonoBehaviour
 {
     [SerializeField]
-    private float _maxSpeed;
+    private bool _isPlayer1;
+
     [SerializeField]
-    private float _acceleration;
+    private float _maxSpeed = 10;
     [SerializeField]
-    private float _jumpHeight;
+    private float _acceleration = 50;
+    [SerializeField]
+    private float _jumpHeight = 4;
+
     [Space]
     [SerializeField]
-    private Vector3 _groundCheck;
+    private Vector3 _groundCheckPosition = new Vector3(0, -0.6f, 0);
     [SerializeField]
-    private float _groundCheckRadius;
+    private float _groundCheckRadius = 0.45f;
 
     private Rigidbody _rigidbody;
     private Vector3 _moveDirection;
@@ -30,15 +34,23 @@ public class BetterPlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_isPlayer1)
+        {
         // Get movement force
-        _moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0);
-        _jumpInput = Input.GetAxisRaw("Jump") != 0;
+        _moveDirection = new Vector3(Input.GetAxisRaw("Player1Horizontal"), 0, 0);
+        _jumpInput = Input.GetAxisRaw("Player1Jump") != 0;
+        }
+        else
+        {
+            _moveDirection = new Vector3(Input.GetAxisRaw("Player2Horizontal"), 0, 0);
+            _jumpInput = Input.GetAxisRaw("Player2Jump") != 0;
+        }
     }
 
     void FixedUpdate()
     {
         // Ground check
-        _isGrounded = Physics.OverlapSphere(transform.position + _groundCheck, _groundCheckRadius).Length > 1;
+        _isGrounded = Physics.OverlapSphere(transform.position + _groundCheckPosition, _groundCheckRadius).Length > 1;
 
         // Add movement force
         _rigidbody.AddForce(_moveDirection * _acceleration * Time.fixedDeltaTime, ForceMode.VelocityChange);
@@ -63,7 +75,7 @@ public class BetterPlayerController : MonoBehaviour
     {
         // Draw ground check
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position + _groundCheck, _groundCheckRadius);
+        Gizmos.DrawWireSphere(transform.position + _groundCheckPosition, _groundCheckRadius);
     }
 #endif
 }
