@@ -134,7 +134,7 @@ MonoBehaviour:
   _isPlayer1: 0
   _maxSpeed: 3
   _acceleration: 70
-  _jumpHeight: 2
+  _jumpHeight: 4
   _groundCheckPosition: {x: 0, y: -0.6, z: 0}
   _groundCheckRadius: 0.45
 --- !u!114 &3490099277731756770
