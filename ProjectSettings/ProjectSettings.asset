@@ -894,11 +894,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: 8164f937-ec32-4e26-984f-8ca088519282
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: JumpyRatKing_Unity
+  organizationId: schmepp
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 

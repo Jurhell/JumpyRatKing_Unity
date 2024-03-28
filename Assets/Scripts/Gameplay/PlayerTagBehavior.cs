@@ -10,6 +10,9 @@ public class PlayerTagBehavior : MonoBehaviour
     [SerializeField]
     private ParticleSystem _taggedParticles;
 
+    [SerializeField]
+    private GameObject _crown;
+
     private bool _canBeTagged = true;
 
     public bool IsTagged { get => _isTagged; }
@@ -22,6 +25,9 @@ public class PlayerTagBehavior : MonoBehaviour
         // Set that we're tagged
         _isTagged = true;
         _canBeTagged = false;
+
+        //Activating the crown
+        _crown.SetActive(true);
 
         // Turn our trail renderer on
         TrailRenderer trailRenderer = GetComponent<TrailRenderer>();
@@ -69,6 +75,9 @@ public class PlayerTagBehavior : MonoBehaviour
         // Set ourselves as not it
         _isTagged = false;
         _canBeTagged = false;
+
+        //Making sure player crown is not active
+        _crown.SetActive(false);
 
         // Turn off our tail renderer
         TrailRenderer trailRenderer = GetComponent<TrailRenderer>();
