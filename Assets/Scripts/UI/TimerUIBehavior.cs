@@ -13,10 +13,11 @@ public class TimerUIBehavior : MonoBehaviour
     [SerializeField] private float _countDown = 120.00f;
 
     private string _stored;
-    private bool _victorDecided;
+    static bool _victorDecided;
 
     void DisableTimer()
     {
+        //Tell that a player has won and and disable timer text
         _victorDecided = true;
         _playerTimer.enabled = !enabled;
     }
@@ -27,27 +28,41 @@ public class TimerUIBehavior : MonoBehaviour
         Debug.Assert(_playerTimer);
         Debug.Assert(_victoryScreen);
 
+        //Disable victory screen and timers before first loop
         _victoryScreen.enabled = !enabled;
+        _playerTimer.enabled = !enabled;
 
+        //Storing default text for later
         _stored = _playerTimer.text;
     }
 
     void Update()
     {
+        //Removing timers after a player has won
         if (_victorDecided)
             _playerTimer.enabled = !enabled;
 
         if (!_tagBehavior || !_playerTimer || !_tagBehavior.IsTagged)
             return;
 
+        _playerTimer.enabled = enabled;
+
+        //Only count down if the time is greater than 0
         if (_countDown > 0.0f)
             _countDown -= Time.deltaTime;
 
-        _playerTimer.text = _stored + _countDown;
+        //Storing time as minutes and seconds
+        int minutes = Mathf.FloorToInt(_countDown / 60);
+        int seconds = Mathf.FloorToInt(_countDown % 60);
+        int milliseconds = seconds / 100;
+
+        //Creating a format for the timer and displaying with stored text
+        _playerTimer.text = _stored + string.Format("{0:00}:{1:00}", minutes, seconds);
         
+        //If the count down is less than or equal to zero
         if (_countDown <= 0.0f)
         {
-            //Victory Screen
+            //Remove timer and enable victory screen component
             DisableTimer();
             _victoryScreen.enabled = enabled;
         }
