@@ -19,7 +19,7 @@ public class TimerUIBehavior : MonoBehaviour
     {
         //Tell that a player has won and and disable timer text
         _victorDecided = true;
-        _playerTimer.enabled = !enabled;
+        _playerTimer.enabled = false;
     }
 
     void Start()
@@ -29,8 +29,8 @@ public class TimerUIBehavior : MonoBehaviour
         Debug.Assert(_victoryScreen);
 
         //Disable victory screen and timers before first loop
-        _victoryScreen.enabled = !enabled;
-        _playerTimer.enabled = !enabled;
+        _victoryScreen.enabled = false;
+        _playerTimer.enabled = false;
 
         //Storing default text for later
         _stored = _playerTimer.text;
@@ -40,12 +40,12 @@ public class TimerUIBehavior : MonoBehaviour
     {
         //Removing timers after a player has won
         if (_victorDecided)
-            _playerTimer.enabled = !enabled;
+            _playerTimer.enabled = false;
 
         if (!_tagBehavior || !_playerTimer || !_tagBehavior.IsTagged)
             return;
 
-        _playerTimer.enabled = enabled;
+        _playerTimer.enabled = true;
 
         //Only count down if the time is greater than 0
         if (_countDown > 0.0f)
@@ -64,7 +64,7 @@ public class TimerUIBehavior : MonoBehaviour
         {
             //Remove timer and enable victory screen component
             DisableTimer();
-            _victoryScreen.enabled = enabled;
+            _victoryScreen.enabled = true;
         }
     }
 }

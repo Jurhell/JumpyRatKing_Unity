@@ -29,13 +29,13 @@ public class CrownBehavior : MonoBehaviour
         _playerTagBehavior.Tag();
 
         //Disabling the text
-        _objectiveText.enabled = !enabled;
+        _objectiveText.enabled = false;
 
         Destroy(gameObject);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        transform.Rotate(0f, -1f, 0f, Space.Self);
+        transform.Rotate(0f, 3f, 0f, Space.Self);
     }
 }

@@ -5,8 +5,8 @@ using UnityEngine;
 public class CrownRotationBehavior : MonoBehaviour
 {
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        transform.Rotate(0f, -1f, 0f, Space.Self);
+        transform.Rotate(0f, 3f, 0f, Space.Self);
     }
 }
