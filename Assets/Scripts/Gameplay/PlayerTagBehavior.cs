@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerTagBehavior : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class PlayerTagBehavior : MonoBehaviour
 
     [SerializeField]
     private GameObject _crown;
+
+    public UnityEvent OnTagged;
 
     private bool _canBeTagged = true;
 
@@ -40,6 +43,7 @@ public class PlayerTagBehavior : MonoBehaviour
             _taggedParticles.Play();
         }
 
+        OnTagged.Invoke();
         return true;
     }
 
@@ -47,6 +51,8 @@ public class PlayerTagBehavior : MonoBehaviour
 
     void Start()
     {
+        OnTagged.AddListener(SetCanBeTagged);
+
         // Get my trail renderer
         TrailRenderer trail = GetComponent<TrailRenderer>();
         if (trail == null) { return; }

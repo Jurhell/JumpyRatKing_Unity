@@ -402,6 +402,9 @@ MonoBehaviour:
   _isTagged: 0
   _taggedParticles: {fileID: 3383606172406175959}
   _crown: {fileID: 8782788223421273178}
+  OnTagged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!96 &8183568532870936379
 TrailRenderer:
   serializedVersion: 2
