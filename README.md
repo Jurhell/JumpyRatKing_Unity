@@ -1,6 +1,8 @@
 Controls:
 Movement - WASD
+
 Pause - Esc
+
 Restart Game - R
 
 Technical Design Document:
